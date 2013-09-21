@@ -7,7 +7,7 @@ object AppBuilder extends Build {
 
   val appSettings = Seq(
     name := "url-shortener",
-    organization := "com.rodrigolazoti",
+    organization := "com.rlazoti",
     version := "0.0.1-SNAPSHOT",
     scalaVersion := "2.10.2",
     unmanagedSourceDirectories in Compile <<= (scalaSource in Compile)(Seq(_)),
