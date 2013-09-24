@@ -14,7 +14,7 @@ package object urlshortener {
 
   def notFound = response(NOT_FOUND, Map.empty)
 
-  def redirect(url: String) = response(MOVED_PERMANENTLY, Map("Location" -> url))
+  def redirect(url: String) = response(MOVED_PERMANENTLY, Map("Location" -> url, , "content-type" -> "text/html"))
 
   def error(content: String) =
     response(INTERNAL_SERVER_ERROR, Map("content-type" -> "text/plain"), content)
