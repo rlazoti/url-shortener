@@ -3,7 +3,7 @@ package com.rlazoti.urlshortener.infra.repositories
 import com.twitter.finagle.Service
 import com.twitter.finagle.builder.ClientBuilder
 import com.twitter.finagle.redis.{ Client, Redis }
-import com.twitter.finagle.redis.protocol.{ Command, Reply, Del, Get, Set, StatusReply, BulkReply, IntegerReply }
+import com.twitter.finagle.redis.protocol.{ Command, Reply, Get, Set, StatusReply, BulkReply }
 import com.twitter.conversions.time.intToTimeableNumber
 import com.twitter.util.Future
 import org.jboss.netty.buffer.ChannelBuffer
@@ -55,15 +55,6 @@ class UrlRepository(client: Service[Command, Reply]) {
     client(Set(generateKeyByHash(hash), url)) map {
       case StatusReply("OK") => Some(hash)
       case _                 => None
-    }
-  }
-
-  def remove(hash: String): Future[Option[Boolean]] = {
-    val keys = Seq(stringToChannelBuffer(generateKeyByHash(hash)))
-
-    client(Del(keys)) map {
-      case IntegerReply(1) => Some(true)
-      case _               => None
     }
   }
 

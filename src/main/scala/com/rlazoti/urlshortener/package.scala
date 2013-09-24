@@ -25,7 +25,7 @@ package object urlshortener {
   private def response(status: HttpResponseStatus, headers: Map[String, Any], content: String = "") = {
     val response = new DefaultHttpResponse(HTTP_1_1, status)
     headers.foreach(params => response.setHeader(params._1, params._2))
-    if (!content.isEmpty()) response.setContent(copiedBuffer(content, UTF_8))
+    if (!content.isEmpty) response.setContent(copiedBuffer(content, UTF_8))
 
     response
   }

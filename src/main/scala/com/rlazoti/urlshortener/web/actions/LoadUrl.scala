@@ -10,10 +10,10 @@ class LoadUrl {
 
     repository
       .find(hash)
-      .map({
+      .map {
         case Some(url) => redirect(url)
         case _         => error(s"Redirect cannot be done. HASH($hash) not found")
-      })
+      }
       .ensure(repository.release)
   }
 

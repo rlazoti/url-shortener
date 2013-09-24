@@ -33,13 +33,13 @@ class GenerateUrl {
         val repository = UrlRepository.getInstance
         repository
           .save(url)
-          .map(_ match {
+          .map {
             case Some(hash) => ok(Map("content-type" -> "application/json"), s"""{"url" : "$url", "hash": "$hash"}""")
             case _          => error("URL cannot be stored in Redis")
-          })
+          }
           .ensure(repository.release)
       }
-      case _ => Future(error("Request parameter's URL is undefined"))
+      case _ => Future.value(error("Request parameter's URL is undefined"))
     }
   }
 
