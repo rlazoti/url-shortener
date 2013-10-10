@@ -1,4 +1,4 @@
-package com.rlazoti.urlshortener
+package com.rlazoti.urlshortener.bin
 
 import com.rlazoti.urlshortener.web.services.RoutingService
 import com.rlazoti.urlshortener.web.filters.HandleExceptions
